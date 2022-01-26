@@ -1,0 +1,42 @@
+@import "main.css";
+@import "catalog.css";
+@import "cart.css";
+
+.manage-container {
+    position: center;
+    padding-top: 22px;
+}
+
+.submitted-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.header {
+    padding-top: 0;
+    padding-bottom: 12px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.button-layout {
+    padding-top: 10px;
+}
+
+.heading-row {
+    padding-left: 13px;
+}
+
+.list-item {
+    margin-bottom: 5px;
+}
+
+.navbar-link {
+    padding-top: 5px;
+    padding-left: 0;
+    font-size: 17px;
+}

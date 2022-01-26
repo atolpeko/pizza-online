@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/scc/cart.css}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Cart</title>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div class="nav">
+    <nav class="nav-menu menu">
+        <ul class="menu-list r-list">
+            <li class="menu-group">
+                <a class="menu-link r-link text-underlined" th:href="@{/}">Home</a></li>
+            <li class="menu-group">
+                <a class="menu-link r-link text-underlined" th:href="@{/pizzas}">Pizzas</a></li>
+            <li class="menu-group">
+                <a class="menu-link r-link text-underlined" th:href="@{/drinks}">Drinks</a></li>
+            <li class="menu-group">
+                <a class="menu-link r-link text-underlined" th:href="@{/cart}">Cart</a></li>
+            <li class="menu-group">
+                <a class="menu-link r-link text-underlined" th:href="@{/account}">Account</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')" class="menu-group">
+                <a class="menu-link r-link text-underlined" th:href="@{/manage}">Manage</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Central content-->
+<div class="container h-100 cart-container">
+    <h1>Cart:</h1>
+    <hr>
+    <div th:if="${order.isEmpty()}">
+        <h4>Is empty</h4>
+    </div>
+    <div th:if="${!order.pizzas.isEmpty()}" th:each="pizza : ${order.pizzas}">
+        <div class="row">
+            <div class="card flex-row card-horizontal">
+                <div class="card-body">
+                    <h5 class="card-title h5 h4-sm" th:text="${pizza.name}"></h5>
+                    <h5 class="card-text text-secondary" th:text="'$' + ${pizza.price}"></h5>
+                    <form th:method="delete" th:action="@{/cart/pizza/{id}(id=${pizza.id})}">
+                        <button type="submit" class="btn btn-primary card-button">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${!order.drinks.isEmpty()}" th:each="drink : ${order.drinks}">
+        <div class="row">
+            <div class="card flex-row card-horizontal">
+                <div class="card-body">
+                    <h5 class="card-title h5 h4-sm" th:text="${drink.name + ' - ' +
+                    drink.capacity + ' ml'}"></h5>
+                    <h5 class="card-text text-secondary" th:text="'$' + ${drink.price}"></h5>
+                    <form th:method="delete" th:action="@{/cart/drink/{id}(id=${drink.id})}">
+                        <button class="btn btn-primary card-button">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${!order.pizzas.isEmpty() or !order.drinks.isEmpty()}">
+        <hr>
+        <form method="get" th:action="@{/cart/submit}">
+            <button class="btn btn-primary card-button"
+                    th:text="'Order for $' + ${#numbers.formatDecimal(order.price, 0, 2)}">
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

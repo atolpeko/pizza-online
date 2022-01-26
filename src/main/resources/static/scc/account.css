@@ -1,0 +1,9 @@
+@import "main.css";
+@import "catalog.css";
+
+.header {
+    padding-top: 0;
+    padding-bottom: 12px;
+    font-size: xx-large;
+    font-weight: bold;
+}

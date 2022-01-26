@@ -1,0 +1,106 @@
+body {
+    color: #FFFFFFFF;
+    background-color: #F0F0F0;
+    font-family: sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-custom-settings {
+    --menuBackgroundColor: #6c5ce7;
+    --menuLinkColor: #fff;
+    --menuLinkColorUnactive: #241c69;
+    --menuLinkOutlineOffset: -.5rem;
+}
+
+.text-underlined {
+    position: relative;
+    overflow: hidden;
+    will-change: color;
+    transition: color .25s ease-out;
+}
+
+.text-underlined::before,
+.text-underlined::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: var(--menuLinkColor, currentColor);
+    will-change: width;
+    transition: width .1s ease-out;
+    position: absolute;
+    bottom: 0;
+}
+
+.text-underlined::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.text-underlined::after {
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.text-underlined:hover::before,
+.text-underlined:hover::after {
+    width: 100%;
+    transition-duration: .2s;
+}
+
+.r-link[href] {
+    color: var(--rLinkColor) !important;
+}
+
+.r-list {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 5px;
+    margin-bottom: unset;
+    list-style: var(--menuLinkColor, none) !important;
+}
+
+.menu-link:focus {
+    outline-offset: var(--menuLinkOutlineOffset);
+}
+
+.menu:hover .menu-link:not(:hover) {
+    --rLinkColor: var(--menuLinkColorUnactive, rgba(22, 22, 22, .35));
+}
+
+.menu-list {
+    display: flex;
+}
+
+.menu-link {
+    padding: var(--menuLinkPadding, 1.5rem 2.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nav {
+    background-color: #F0F0F0;
+}
+
+.nav-menu:nth-child(n+2) {
+    margin-top: 3rem;
+}
+
+.r-link {
+    padding-bottom: 12px;
+    padding-top: 12px;
+
+    --uirLinkDisplay: var(--menuLinkColor, inline-flex);
+    --uirLinkTextColor: var(--menuLinkColor);
+    --uirLinkTextDecoration: var(--menuLinkColor, none);
+    display: var(--uirLinkDisplay) !important;
+    color: var(--uirLinkTextColor) !important;
+    text-decoration: var(--uirLinkTextDecoration) !important;
+    border-width: 0;
+}
+
+.validation-error {
+    color: #FF0000FF;
+}

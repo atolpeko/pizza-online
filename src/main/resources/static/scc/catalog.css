@@ -1,0 +1,25 @@
+@import "main.css";
+
+.cards-holder {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.row {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.card .card-title {
+    padding-bottom: 5px;
+    font-family: Galvji;
+    font-weight: bold;
+}
+
+.card-button {
+    margin-top: 10px;
+}
+
+.btn-group {
+    padding-right: 7px;
+}

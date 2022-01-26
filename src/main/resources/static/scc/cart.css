@@ -1,0 +1,18 @@
+@import "main.css";
+@import "catalog.css";
+
+.cart-container {
+    position: center;
+    padding-top: 22px;
+}
+
+.heading {
+    padding-top: 0;
+    padding-bottom: 12px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.button-layout {
+    padding-top: 10px;
+}
